@@ -1,3 +1,4 @@
+// import { Observable } from 'rxjs/Observable';
 import { HeroService } from './../hero.service';
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';
@@ -12,14 +13,14 @@ import { Hero } from './hero';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[]
+  heroes:Hero[]
   selectedHero: Hero;
 
   //The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site
   constructor(private heroService:HeroService) { }
 
-  getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+  getHeroes(): void { // the heroes service is now returning an observable
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
   ngOnInit() {
