@@ -14,23 +14,16 @@ import { Hero } from './hero';
 })
 export class HeroesComponent implements OnInit {
   heroes:Hero[]
-  selectedHero: Hero;
 
   //The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site
   constructor(private heroService:HeroService) { }
-
-  getHeroes(): void { // the heroes service is now returning an observable
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
-  }
 
   ngOnInit() {
     this.getHeroes()
   }
 
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    console.log(hero.name)
+  getHeroes(): void { // the heroes service is now returning an observable
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
 }
